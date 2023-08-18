@@ -1,0 +1,289 @@
+use("db_citas");
+db.createCollection("tipo_documento", {
+    capped: true,
+    size: 500,
+    max: 5,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["tipodoc_id", "tidodoc_nombre", "tipodoc_abreviatura"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                tipodoc_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                tidodoc_nombre: {
+                    bsonType: "string"
+                },
+                tipodoc_abreviatura: {
+                    bsonType: "string"
+                }
+            }  
+        }
+    }
+});
+use("db_citas");
+db.createCollection("genero",{
+    capped: true,
+    max: 7,
+    size: 1000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["gen_id", "gen_nombre", "gen_abreviatura"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                gen_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                gen_nombre: {
+                    bsonType: "string"
+                },
+                gen_abreviatura: {
+                    bsonType: "string"
+                }
+            }  
+        }
+    }
+});
+db.createCollection("acudiente",{
+    capped: true,
+    max: 100,
+    size: 16000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["acu_codigo", "acu_nombreCompleto", "acu_telefono", "acu_direccion"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                acu_codigo: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 200
+                },
+                acu_nombreCompleto: {
+                    bsonType: "string"
+                },
+                acu_telefono: {
+                    bsonType: "number"
+                },
+                acu_direccion: {
+                    bsonType: "string"
+                }
+            }  
+        }
+    }
+});
+db.createCollection("usuario",{
+    capped: true,
+    max: 5,
+    size: 1000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["usu_id", "usu_nombre", "usu_segdo_nombre", "usu_primer_apellido_usuar", "usu_segdo_apellido_usuar","usu_telefono", "usu_direccion", "usu_email", "usu_tipodoc", "usu_genero", "usu_acudiente"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                usu_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                usu_nombre: {
+                    bsonType: "string"
+                },
+                usu_segdo_nombre: {
+                    bsonType: "string"
+                },
+                usu_primer_apellido_usuar: {
+                    bsonType: "string"
+                },
+                usu_segdo_apellido_usuar: {
+                    bsonType: "string"
+                },
+                usu_telefono: {
+                    bsonType: "string"
+                },
+                usu_direccion: {
+                    bsonType: "string"
+                },
+                usu_email: {
+                    bsonType: "string"
+                },
+                usu_tipodoc: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                usu_genero: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                usu_acudiente: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+
+            }  
+        }
+    }
+});
+db.createCollection("cita",{
+    capped: true,
+    max: 1000,
+    size: 50000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["cit_codigo", "cit_fecha", "cit_estadoCita", "cit_medico", "cit_datosUsuario"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                cit_codigo: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+                cit_fecha: {
+                    bsonType: "date"
+                },
+                cit_estadoCita: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+                cit_medico: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+                cit_datosUsuario: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                }
+            }  
+        }
+    }
+});
+db.createCollection("estado_cita",{
+    capped: true,
+    max: 5,
+    size: 1000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["estcita_id", "estcita_nombre"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                estcita_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                estcita_nombre: {
+                    bsonType: "string"
+                }
+            }  
+        }
+    }
+});
+db.createCollection("medico",{
+    capped: true,
+    max: 80,
+    size: 10000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["med_nroMatriculaProfesional", "med_nombreCompleto", "med_consultorio", "med_especialidad"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                med_nroMatriculaProfesional: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+                med_nombreCompleto: {
+                    bsonType: "string"
+                },
+                med_consultorio: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+                med_especialidad: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 1000
+                },
+            }  
+        }
+    }
+});
+db.createCollection("especialidad",{
+    capped: true,
+    max: 30,
+    size: 8000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["esp_id", "esp_nombre"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                esp_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                esp_nombre: {
+                    bsonType: "string"
+                }
+            }  
+        }
+    }
+});
+db.createCollection("consultorio",{
+    capped: true,
+    max: 100,
+    size: 30000,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["cons_codigo", "cons_nombre"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                cons_codigo: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20
+                },
+                cons_nombre: {
+                    bsonType: "string"
+                }
+            }  
+        }
+    }
+});
