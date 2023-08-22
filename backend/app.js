@@ -1,10 +1,13 @@
-import dotenv from "dotenv"
-import express from "express"
-dotenv.config();
+import config from "./src/utils/config.js";
+import express from "express";
+import initApiRoutes from "./src/routes/router.js";
+
 const app = express();
 
 app.use(express.json())
-const config = JSON.parse(process.env.MY_SERVER);
-app.listen(config, ()=>{
-    console.log(`http://${config.hostname}:${config.port}`);
+app.use("/api", initApiRoutes());
+
+
+app.listen(config.server, ()=>{
+    console.log(`El servidor está activo: http://${config.server.hostname}:${config.server.port}`);
 })
