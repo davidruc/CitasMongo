@@ -239,6 +239,7 @@ db.createCollection("medico",{
         }
     }
 });
+
 db.createCollection("especialidad",{
     capped: true,
     max: 30,
