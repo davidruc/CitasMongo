@@ -1,4 +1,16 @@
 use("db_citas");
+db.createCollection("counters");
+db.counters.insertMany([
+    { count: "tipo_documentoId", sequence_value: 0 },
+    { count: "generoId", sequence_value: 0 },
+    { count: "acudienteId", sequence_value: 0 },
+    { count: "usuarioId", sequence_value: 0 },
+    { count: "citaId", sequence_value: 0 },
+    { count: "estado_citaId", sequence_value: 0 },
+    { count: "medicoId", sequence_value: 0 },
+    { count: "especialidadId", sequence_value: 0 },
+    { count: "consultorioId", sequence_value: 0 }
+]);
 db.createCollection("tipo_documento", {
     capped: true,
     size: 500,
@@ -26,7 +38,6 @@ db.createCollection("tipo_documento", {
         }
     }
 });
-use("db_citas");
 db.createCollection("genero",{
     capped: true,
     max: 7,
@@ -239,7 +250,6 @@ db.createCollection("medico",{
         }
     }
 });
-
 db.createCollection("especialidad",{
     capped: true,
     max: 30,
@@ -288,3 +298,5 @@ db.createCollection("consultorio",{
         }
     }
 });
+use("db_citas");
+db.especialidad.aggregate([{$match: {esp_nombre: "Cardiología"}}])

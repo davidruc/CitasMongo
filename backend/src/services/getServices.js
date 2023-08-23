@@ -19,7 +19,7 @@ const obtenerAcudientesById = async (id)=>{
 }
 const obtenerAllCita = async ()=>{
     const cita = new Cita();
-    return await cita.getAllCita()
+    return await cita.getAllCitas()
 }
 const obtenerCitaById = async (id)=>{
     const cita = new Cita();
@@ -27,7 +27,7 @@ const obtenerCitaById = async (id)=>{
 }
 const obtenerAllConsultorio = async ()=>{
     const consultorio = new Consultorio();
-    return await consultorio.getAllConsultorio()
+    return await consultorio.getAllConsultorios()
 }
 const obtenerConsultorioById = async (id)=>{
     const consultorio = new Consultorio();
@@ -35,7 +35,7 @@ const obtenerConsultorioById = async (id)=>{
 }
 const obtenerAllEspecialidad = async ()=>{
     const especialidad = new Especialidad();
-    return await especialidad.getAllEspecialidad()
+    return await especialidad.getAllEspecialidades()
 }
 const obtenerEspecialidadById = async (id)=>{
     const especialidad = new Especialidad();
@@ -43,7 +43,7 @@ const obtenerEspecialidadById = async (id)=>{
 }
 const obtenerAllEstadoCita = async ()=>{
     const estadiCita = new EstadoCita();
-    return await estadiCita.getAllEstadoCita()
+    return await estadiCita.getAllEstadoCitas()
 }
 const obtenerEstadoCitaById = async (id)=>{
     const estadiCita = new EstadoCita();
@@ -51,7 +51,7 @@ const obtenerEstadoCitaById = async (id)=>{
 }
 const obtenerAllGenero = async ()=>{
     const genero = new Genero();
-    return await genero.getAllGenero()
+    return await genero.getAllGeneros()
 }
 const obtenerGeneroById = async (id)=>{
     const genero = new Genero();
@@ -59,7 +59,7 @@ const obtenerGeneroById = async (id)=>{
 }
 const obtenerAllMedico = async ()=>{
     const medico = new Medico();
-    return await medico.getAllMedico()
+    return await medico.getAllMedicos()
 }
 const obtenerMedicoById = async (id)=>{
     const medico = new Medico();
@@ -67,7 +67,7 @@ const obtenerMedicoById = async (id)=>{
 }
 const obtenerAllTipoDoc = async ()=>{
     const tipoDoc = new TipoDoc();
-    return await tipoDoc.getAllTipoDoc()
+    return await tipoDoc.getAllTipoDocs()
 }
 const obtenerTipoDocById = async (id)=>{
     const tipoDoc = new TipoDoc();
@@ -75,10 +75,16 @@ const obtenerTipoDocById = async (id)=>{
 }
 const obtenerAllUsuario = async ()=>{
     const usuario = new Usuario();
-    return await usuario.getAllUsuario()
+    return await usuario.getAllUsuarios()
 }
 const obtenerUsuarioById = async (id)=>{
     const usuario = new Usuario();
     return await usuario.getUsuariosByID(id)
 }
-export { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById }
+
+const obtenerEspecialidadByName = async (esp)=>{
+    const especialidad = new Especialidad();
+    console.log(esp);
+    return await especialidad.getEspecialidadByName(esp)
+}
+export { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName }

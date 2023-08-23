@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController } from "../controllers/getDataControllers.js";
+import { obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController } from "../controllers/getDataControllers.js";
 
 const getInitRoute = ()=>{
     const router = Router();
@@ -9,7 +9,7 @@ const getInitRoute = ()=>{
     router.get("/especialidades", obtenerAllEspecialidadController);
     router.get("/estadoCitas", obtenerAllEstadoCitaController);
     router.get("/generos", obtenerAllGeneroController);
-    router.get("/medicos", obtenerAllMedicoController);
+    router.get("/medicos", obtenerAllMedicoController); 
     router.get("/tipoDocumentos", obtenerAllTipoDocController);
     router.get("/usuarios", obtenerAllUsuarioController);
     router.get("/acudiente", obtenerAcudientesByIdController);
@@ -17,13 +17,12 @@ const getInitRoute = ()=>{
     router.get("/consultorio", obtenerConsultorioByIdController);
     router.get("/especialidad", obtenerEspecialidadByIdController);
     router.get("/estadoCita", obtenerEstadoCitaByIdController);
-    router.get("/genero", obtenerGeneroByIdController);
+    router.get("/genero", obtenerGeneroByIdController); 
     router.get("/medico", obtenerMedicoByIdController);
     router.get("/tipoDocumento", obtenerTipoDocByIdController);
     router.get("/usuario", obtenerUsuarioByIdController);
-
-
-    return router;
+    router.get("/especialidadName", obtenerEspecialidadByNameController);  
+    return router; 
 }
 
 export default getInitRoute
