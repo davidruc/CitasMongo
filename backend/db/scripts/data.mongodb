@@ -1,0 +1,73 @@
+use("db_citas");
+function siguienteId(coleccion) {
+    const sequenceDocument = db.counters.findOneAndUpdate(
+        { count: `${coleccion}Id` },
+        { $inc: { sequence_value: 1 } },
+        { returnDocument: "after" }
+    );
+    return sequenceDocument.sequence_value;
+}
+db.tipo_documento.insertMany([
+    { tipodoc_id: siguienteId("tipo_documento"), tidodoc_nombre: "Cedula de Ciudadania", tipodoc_abreviatura: "Cc" },
+    { tipodoc_id: siguienteId("tipo_documento"), tidodoc_nombre: "Tarjeta de Identidad", tipodoc_abreviatura: "T.i" },
+    { tipodoc_id: siguienteId("tipo_documento"), tidodoc_nombre: "Pasaporte", tipodoc_abreviatura: "Past" }
+]);
+db.genero.insertMany([
+    { gen_id: siguienteId("genero"), gen_nombre: "Masculino", gen_abreviatura: "M" },
+    { gen_id: siguienteId("genero"), gen_nombre: "Femenino", gen_abreviatura: "F" },
+    { gen_id: siguienteId("genero"), gen_nombre: "Otro", gen_abreviatura: "Otro" }
+]);
+db.acudiente.insertMany([
+    { acu_codigo: siguienteId("acudiente"), acu_nombreCompleto: "Edgar Eduardo Mantilla Garcia", acu_telefono: 3167965248, acu_direccion: "Lebrija Santander" },
+    { acu_codigo: siguienteId("acudiente"), acu_nombreCompleto: "Stiven Carvajal", acu_telefono: 3147854987, acu_direccion: "Palomitas Floridablanca" },
+    { acu_codigo: siguienteId("acudiente"), "acu_nombreCompleto": "Luisa Pérez", "acu_telefono": 3167965248, "acu_direccion": "Calle 123, Ciudad" },
+    { acu_codigo: siguienteId("acudiente"), "acu_nombreCompleto": "Pedro Gómez", "acu_telefono": 3167965248, "acu_direccion": "Avenida 456, Ciudad" },
+    { acu_codigo: siguienteId("acudiente"), "acu_nombreCompleto": "María Rodríguez", "acu_telefono": 3167965248, "acu_direccion": "Carrera 789, Ciudad" },
+    { acu_codigo: siguienteId("acudiente"), "acu_nombreCompleto": "Andrés Torres", "acu_telefono": 3167965248, "acu_direccion": "Calle Principal, Ciudad" },
+    { acu_codigo: siguienteId("acudiente"), "acu_nombreCompleto": "Laura Sánchez", "acu_telefono": 3167965248, "acu_direccion": "Avenida Central, Ciudad" }
+]);
+db.usuario.insertMany([
+    { usu_id:  siguienteId("usuario"), usu_nombre: "Andres", "usu_segdo_nombre": "Santiago", "usu_primer_apellido_usuar": "Carvajal", "usu_segdo_apellido_usuar": "Peliño", "usu_telefono": "3154784596", "usu_direccion": "Bucaramanga", "usu_email": "santiagoyo@gmail.com", "usu_tipodoc": 1, "usu_genero": 1, "usu_acudiente": 1 },
+    { usu_id:  siguienteId("usuario"), usu_nombre: "Fabio", "usu_segdo_nombre": "Alberto", "usu_primer_apellido_usuar": "Morales", "usu_segdo_apellido_usuar": "Petriño", "usu_telefono": "3174578496", "usu_direccion": "Giron", "usu_email": "fabio478@outlook.es", "usu_tipodoc": 1, "usu_genero": 1, "usu_acudiente": 1 },
+    { usu_id: siguienteId("usuario"), usu_nombre: "Alejandra","usu_segdo_nombre": "Alberta", "usu_primer_apellido_usuar": "Mantilla", "usu_segdo_apellido_usuar": "Garcia", "usu_telefono": "3007845647", "usu_direccion": "Lebrija", "usu_email": "aleja78@outlook.es", "usu_tipodoc": 2, "usu_genero": 2, "usu_acudiente": 2 }
+]);
+db.cita.insertMany([
+    { "cit_codigo": siguienteId("cita"), "cit_fecha": new Date("2023-07-13"), "cit_estadoCita": 1, "cit_medico": 123, "cit_datosUsuario": 1 },
+    { "cit_codigo": siguienteId("cita"), "cit_fecha": new Date("2023-07-13"), "cit_estadoCita": 1, "cit_medico": 156, "cit_datosUsuario": 2 },
+    { "cit_codigo": siguienteId("cita"), "cit_fecha": new Date("2023-07-14"), "cit_estadoCita": 2, "cit_medico": 267, "cit_datosUsuario": 2 },
+    { "cit_codigo": siguienteId("cita"), "cit_fecha": new Date("2023-07-15"), "cit_estadoCita": 3, "cit_medico": 345, "cit_datosUsuario": 3 },
+    { "cit_codigo": siguienteId("cita"), "cit_fecha": new Date("2023-07-16"), "cit_estadoCita": 4, "cit_medico": 456, "cit_datosUsuario": 4 }
+]);
+db.estado_cita.insertMany([
+    { "estcita_id": siguienteId("estado_cita"), "estcita_nombre": "Pendiente" },
+    { "estcita_id": siguienteId("estado_cita"), "estcita_nombre": "Confirmada" },
+    { "estcita_id": siguienteId("estado_cita"), "estcita_nombre": "Cancelada" },
+    { "estcita_id": siguienteId("estado_cita"), "estcita_nombre": "Realizada" },
+    { "estcita_id": siguienteId("estado_cita"), "estcita_nombre": "Ausente" }
+]);
+db.medico.insertMany([
+    { "med_nroMatriculaProfesional": 123, "med_nombreCompleto": "Dr. Juan Pérez", "med_consultorio": 1, "med_especialidad": 1 },
+    { "med_nroMatriculaProfesional": 234, "med_nombreCompleto": "Dra. Ana Rodríguez", "med_consultorio": 2, "med_especialidad": 2 },
+    { "med_nroMatriculaProfesional": 345, "med_nombreCompleto": "Dr. Luis Martínez", "med_consultorio": 3, "med_especialidad": 3 },
+    { "med_nroMatriculaProfesional": 456, "med_nombreCompleto": "Dra. Laura Gómez", "med_consultorio": 4, "med_especialidad": 4 },
+    { "med_nroMatriculaProfesional": 567, "med_nombreCompleto": "Dr. Carlos Sánchez", "med_consultorio": 5, "med_especialidad": 5 }
+]);
+db.especialidad.insertMany([
+    { "esp_id": siguienteId("especialidad"), "esp_nombre": "Cardiología" },
+    { "esp_id": siguienteId("especialidad"), "esp_nombre": "Dermatología" },
+    { "esp_id": siguienteId("especialidad"), "esp_nombre": "Pediatría" },
+    { "esp_id": siguienteId("especialidad"), "esp_nombre": "Oftalmología" },
+    { "esp_id": siguienteId("especialidad"), "esp_nombre": "Gastroenterología" }
+]);
+db.consultorio.insertMany([
+    { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio A" },
+    { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio B" },
+    { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio C" },
+    { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio D" },
+    { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio E" }
+]);
+
+
+
+
+
