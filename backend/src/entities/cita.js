@@ -1,4 +1,4 @@
-import { conexion } from "../../db/atlas.js";
+import { collectionGen } from "../../db/atlas.js";
 
 class Cita{    
     _id;
@@ -10,7 +10,7 @@ class Cita{
     constructor(){};
     async connect(){
         try {
-            const result = await conexion("cita"); 
+            const result = await collectionGen("cita"); 
             return result;
         } catch (error) {
             throw error;
@@ -19,7 +19,7 @@ class Cita{
     async getAllCitas(){
         try {
             const connection = await this.connect();
-            const result = await connection.find({}).toArray();
+            const result = await connection.find({}).sort({cit_fecha: 1}).toArray();
             return result;
         } catch (error) {
             throw error;

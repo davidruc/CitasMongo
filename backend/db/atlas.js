@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 
 let dbConnection = null;
 
-export async function conexion(col){
+export async function conexion(){
     if(dbConnection){
         return dbConnection;
     };
@@ -14,10 +14,14 @@ export async function conexion(col){
             useUnifiedTopology: true
         } 
         const cliente = await MongoClient.connect(uri, options);
-        const data = cliente.db();
-        dbConnection = data.collection(col);
+        dbConnection = cliente.db();
         return dbConnection;
     } catch (error) {
         return {status:500, message: error}
     }
+}
+export const collectionGen = async (coleccion) => {
+    const db = await conexion();
+    const newCollection = db.collection(coleccion);
+    return newCollection;
 }

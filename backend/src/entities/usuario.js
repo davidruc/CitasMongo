@@ -1,4 +1,4 @@
-import { conexion } from "../../db/atlas.js";
+import { collectionGen } from "../../db/atlas.js";
 
 class Usuario{    
     _id;
@@ -16,7 +16,7 @@ class Usuario{
     constructor(){};
     async connect(){
         try {
-            const result = await conexion("usuario"); 
+            const result = await collectionGen("usuario"); 
             return result;
         } catch (error) {
             throw error;
@@ -25,7 +25,7 @@ class Usuario{
     async getAllUsuarios(){
         try {
             const connection = await this.connect();
-            const result = await connection.find({}).toArray();
+            const result = await connection.find({}).sort({usu_nombre: 1}).toArray();
             return result;
         } catch (error) {
             throw error;
@@ -46,7 +46,7 @@ class Usuario{
         try {
             const connection = await this.connect();
             const result = await connection.insertOne(data);
-            return result;
+            return result; 
         } catch (error) {
             throw error;
         }

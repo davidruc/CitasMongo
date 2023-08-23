@@ -1,4 +1,4 @@
-import { conexion } from "../../db/atlas.js";
+import { collectionGen } from "../../db/atlas.js";
 
 class TipoDoc{    
     _id;
@@ -8,7 +8,7 @@ class TipoDoc{
     constructor(){};
     async connect(){
         try {
-            const result = await conexion("tipo_documento"); 
+            const result = await collectionGen("tipo_documento"); 
             return result;
         } catch (error) {
             throw error;

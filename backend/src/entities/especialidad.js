@@ -1,4 +1,4 @@
-import { conexion } from "../../db/atlas.js";
+import { collectionGen } from "../../db/atlas.js";
 
 class Especialidad{    
     _id;
@@ -7,7 +7,7 @@ class Especialidad{
     constructor(){};
     async connect(){
         try {
-            const result = await conexion("especialidad"); 
+            const result = await collectionGen("especialidad"); 
             return result;
         } catch (error) {
             throw error;
@@ -25,13 +25,21 @@ class Especialidad{
     async getEspecialidadesByID(id){
         try {
             const connection = await this.connect();
-            const result = await connection.aggregate([
-                { $match: { "acu_codigo": parseInt(id)}}]).toArray();
-                console.log(result);
+            const result = await connection.aggregate([{ $match: { "acu_codigo": parseInt(id)}}]).toArray();
             return result;
         } catch (error) {
             throw error;
         }
+    }
+    async getEspecialidadByName(esp){
+        try {
+            const connection = await this.connect();
+            console.log(esp);
+            const result = await connection.aggregate([{$match: {esp_nombre: esp}}]).toArray() ;
+            return result
+        } catch (error) {
+            throw error;
+        } 
     }
     async postEspecialidad(data){
         try {
