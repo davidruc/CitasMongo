@@ -29,7 +29,6 @@ class Acudiente{
             const connection = await this.connect();
             const result = await connection.aggregate([
                 { $match: { "acu_codigo": parseInt(id)}}]).toArray();
-                console.log(result);
             return result;
         } catch (error) {
             throw error;

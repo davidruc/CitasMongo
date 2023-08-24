@@ -1,5 +1,5 @@
-import { postAcudiente, postCita, postConsultorio, postEspecialidad, postEstadoCita, postGenero, postMedico, postTipoDoc, postUsuario } from "../services/postServices.js";
-
+import { postAcudiente, postCita, postConsultorio, postEspecialidad, postEstadoCita, postGenero, postMedico, postTipoDoc, postUsuario} from "../services/postServices.js";
+import { obtenerAcudientesById } from "../services/getServices.js";
 const postAcudienteController = async(req, res, next)=>{
     try {
         const data = req.body;
@@ -81,5 +81,33 @@ const postUsuarioController = async(req, res, next)=>{
         res.status(500).send(error);
     }
 }
-
-export {postAcudienteController, postCitaController, postConsultorioController, postEspecialidadController, postEstadoCitaController, postGeneroController, postMedicoController, postTipoDocController, postUsuarioController};
+const postAndVerifyAcudienteController = async(req, res, next)=>{
+    try {
+        const data = req.body; 
+        const edad = data.usu_edad;
+        const id = data.usu_acudiente;
+        let result = "";
+        if (edad < 18) {
+            if(id === undefined){
+                result = ({message: "El usuario que deseas ingresar es menor de edad, ingresa el id de un acudiente."})
+            } else{
+                const acudiente = await obtenerAcudientesById(id);
+                if (acudiente.length === 0) {
+                    result = ({message: "El id del acudiente que estás ingresando no existe en la base de datos, porfavor ingresalo en el endpoint /acudiente"});
+                } else {
+                    const usuario = await postUsuario(data);
+                    result = usuario
+                }
+            }
+        } else {
+            const usuario = await postUsuario(data);
+            result = usuario
+        }
+        res.status(201).send(result);
+        
+       
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+export {postAcudienteController, postCitaController, postConsultorioController, postEspecialidadController, postEstadoCitaController, postGeneroController, postMedicoController, postTipoDocController, postUsuarioController, postAndVerifyAcudienteController};

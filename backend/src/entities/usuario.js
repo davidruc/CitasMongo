@@ -13,6 +13,7 @@ class Usuario{
     usu_tipodoc;
     usu_genero;
     usu_acudiente;
+    usu_edad;
     constructor(){};
     async connect(){
         try {
