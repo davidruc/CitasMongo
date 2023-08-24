@@ -12,15 +12,9 @@ import { IsDefined } from "class-validator";
 export class Consultorio {
     constructor(data) {
         Object.assign(this, data);
-        this.cons_codigo = 1;
         this.cons_nombre = "el dentrilopo";
     }
 }
-__decorate([
-    Expose({ name: 'consultorio_Id' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El "consultorio_Id" del consultorio es obligatorio` }; } }),
-    __metadata("design:type", Number)
-], Consultorio.prototype, "cons_codigo", void 0);
 __decorate([
     Expose({ name: 'nombre_consultorio' }),
     IsDefined({ message: () => { throw { status: 422, message: `El "nombre_consultorio" del consultorio  es obligatorio` }; } }),

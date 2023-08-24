@@ -7,7 +7,7 @@ export let limitPet = ()=>{
         standarHeaders:true,
         legacyHeaders:false,
         skip: (req, res)=>{
-            if(req.headers["content-length"]>240){
+            if(req.headers["content-length"]>500){
                 res.status(413).send({
                     status: 413,
                     message: "El tamaño es demasiado grande"
@@ -18,7 +18,7 @@ export let limitPet = ()=>{
         message: (req, res)=>{
             res.status(429).send({
                 status: 429,
-                message: "ya se terminaron las solicitudes"
+                message: "ya se terminó el número de solicitudes permitidas por el servidor"
             })
         }
     })

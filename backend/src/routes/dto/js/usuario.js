@@ -12,7 +12,6 @@ import { IsDefined } from "class-validator";
 export class Usuario {
     constructor(data) {
         Object.assign(this, data);
-        this.usu_id = 1;
         this.usu_nombre = "Pepito perez El raton";
         this.usu_segdo_nombre = "Pepito perez El raton";
         this.usu_primer_apellido_usuar = "Pepito perez El raton";
@@ -25,11 +24,6 @@ export class Usuario {
         this.usu_acudiente = 1;
     }
 }
-__decorate([
-    Expose({ name: 'usuario_id' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El "usuario_id" del Usuario es obligatorio` }; } }),
-    __metadata("design:type", Number)
-], Usuario.prototype, "usu_id", void 0);
 __decorate([
     Expose({ name: 'nombre_usuario' }),
     IsDefined({ message: () => { throw { status: 422, message: `El "nombre_usuario" del Usuario es obligatorio` }; } }),

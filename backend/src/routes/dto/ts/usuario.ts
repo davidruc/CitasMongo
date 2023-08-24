@@ -2,9 +2,6 @@ import { Expose, Transform } from "class-transformer";
 import { IsDefined } from "class-validator";
 
 export class Usuario {
-    @Expose({ name: 'usuario_id' })
-    @IsDefined({message: ()=>{ throw {status: 422, message: `El "usuario_id" del Usuario es obligatorio`}}})
-    usu_id: number;
     @Expose({ name: 'nombre_usuario' })
     @IsDefined({message: ()=>{ throw {status: 422, message: `El "nombre_usuario" del Usuario es obligatorio`}}})
     usu_nombre: string;
@@ -38,7 +35,6 @@ export class Usuario {
     
     constructor(data: Partial<Usuario>){
         Object.assign(this , data);
-        this.usu_id = 1;
         this.usu_nombre = "Pepito perez El raton";
         this.usu_segdo_nombre = "Pepito perez El raton";
         this.usu_primer_apellido_usuar = "Pepito perez El raton";

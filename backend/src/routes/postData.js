@@ -1,18 +1,18 @@
 import { Router } from "express";
 import { postAcudienteController, postCitaController, postConsultorioController, postEspecialidadController, postEstadoCitaController, postGeneroController, postMedicoController, postTipoDocController, postUsuarioController, postAndVerifyAcudienteController } from "../controllers/postDataControllers.js";
-
+import { DTOacudienteData, DTOCitaData, DTOConsultorioData, DTOEspecialidadData, DTOEstadoCitaData, DTOGeneroData, DTOMedicoData, DTODocumentoData, DTOUsuarioData  } from "../middleware/verifyData.js"; 
 const postInitRoute = ()=>{
     const router = Router();
-    router.post("/acudiente", postAcudienteController);
-    router.post("/cita", postCitaController);
-    router.post("/consultorio", postConsultorioController);
-    router.post("/especialidad", postEspecialidadController);
-    router.post("/estadoCita", postEstadoCitaController);
-    router.post("/genero", postGeneroController);
-    router.post("/medico", postMedicoController);
-    router.post("/tipoDocumento", postTipoDocController);
-    router.post("/usuario", postUsuarioController);
-    router.post("/ingresoUsu", postAndVerifyAcudienteController)
+    router.post("/acudiente", DTOacudienteData, postAcudienteController);
+    router.post("/cita", DTOCitaData, postCitaController);
+    router.post("/consultorio", DTOConsultorioData, postConsultorioController);
+    router.post("/especialidad", DTOEspecialidadData, postEspecialidadController);
+    router.post("/estadoCita", DTOEstadoCitaData, postEstadoCitaController);
+    router.post("/genero", DTOGeneroData, postGeneroController);
+    router.post("/medico", DTOMedicoData, postMedicoController);
+    router.post("/tipoDocumento", DTODocumentoData, postTipoDocController);
+    router.post("/usuario", DTOUsuarioData, postUsuarioController);
+    router.post("/ingresoUsu", DTOUsuarioData, postAndVerifyAcudienteController)
     return router;
 }
 

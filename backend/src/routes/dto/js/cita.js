@@ -12,18 +12,12 @@ import { IsDefined } from "class-validator";
 export class Cita {
     constructor(data) {
         Object.assign(this, data);
-        this.cit_codigo = 1;
         this.cit_fecha = new Date(2023, 9, 14);
         this.cit_estadoCita = 1;
         this.cit_medico = 1;
         this.cit_datosUsuario = 1;
     }
 }
-__decorate([
-    Expose({ name: 'codigo_Cita' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El "codigo_Cita" de la Cita es obligatorio` }; } }),
-    __metadata("design:type", Number)
-], Cita.prototype, "cit_codigo", void 0);
 __decorate([
     Expose({ name: 'fecha_cita' }),
     IsDefined({ message: () => { throw { status: 422, message: `El "fecha_cita" de la Cita es obligatorio` }; } }),

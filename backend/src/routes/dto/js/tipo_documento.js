@@ -12,16 +12,10 @@ import { IsDefined } from "class-validator";
 export class Documento {
     constructor(data) {
         Object.assign(this, data);
-        this.tipodoc_id = 1;
         this.tidodoc_nombre = "cedula de ciudadania";
         this.tipodoc_abreviatura = "cc";
     }
 }
-__decorate([
-    Expose({ name: 'tipo_documento_id' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El "tipo_documento_id" del Documento es obligatorio` }; } }),
-    __metadata("design:type", Number)
-], Documento.prototype, "tipodoc_id", void 0);
 __decorate([
     Expose({ name: 'tipo_documento' }),
     IsDefined({ message: () => { throw { status: 422, message: `El "tipo_documento" del Documento es obligatorio` }; } }),

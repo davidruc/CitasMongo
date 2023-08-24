@@ -12,15 +12,9 @@ import { IsDefined } from "class-validator";
 export class EstadoCita {
     constructor(data) {
         Object.assign(this, data);
-        this.estcita_id = 1;
         this.estcita_nombre = "agendada";
     }
 }
-__decorate([
-    Expose({ name: 'codigo_estado' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El "codigo_estado" del estado de la cita es obligatorio` }; } }),
-    __metadata("design:type", Number)
-], EstadoCita.prototype, "estcita_id", void 0);
 __decorate([
     Expose({ name: 'estado_cita' }),
     IsDefined({ message: () => { throw { status: 422, message: `El "estado_cita" del estado de la cita es obligatorio` }; } }),

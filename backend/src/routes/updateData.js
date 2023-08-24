@@ -1,17 +1,17 @@
 import { Router } from "express";
 import { updateAcudienteController, updateCitaController, updateConsultorioController, updateEspecialidadController, updateEstadoCitaController, updateGeneroController, updateMedicoController, updateTipoDocController, updateUsuarioController} from "../controllers/updateDataControllers.js";
-
+import { DTOacudienteData, DTOCitaData, DTOConsultorioData, DTOEspecialidadData, DTOEstadoCitaData, DTOGeneroData, DTOMedicoData, DTODocumentoData, DTOUsuarioData  } from "../middleware/verifyData.js"; 
 const putInitRoute = ()=>{
     const router = Router();
-    router.put("/acudiente", updateAcudienteController);
-    router.put("/cita", updateCitaController);
-    router.put("/consultorio", updateConsultorioController);
-    router.put("/especialidad", updateEspecialidadController);
-    router.put("/estadoCita", updateEstadoCitaController);
-    router.put("/genero", updateGeneroController);
-    router.put("/medico", updateMedicoController);
-    router.put("/tipoDocumento", updateTipoDocController);
-    router.put("/usuario", updateUsuarioController);
+    router.put("/acudiente", DTOacudienteData, updateAcudienteController);
+    router.put("/cita", DTOCitaData,updateCitaController);
+    router.put("/consultorio", DTOConsultorioData,updateConsultorioController);
+    router.put("/especialidad",DTOEspecialidadData, updateEspecialidadController);
+    router.put("/estadoCita", DTOEstadoCitaData ,updateEstadoCitaController);
+    router.put("/genero", DTOGeneroData, updateGeneroController);
+    router.put("/medico", DTOMedicoData, updateMedicoController);
+    router.put("/tipoDocumento", DTODocumentoData, updateTipoDocController);
+    router.put("/usuario", DTOUsuarioData, updateUsuarioController);
     return router;
 }
 export default putInitRoute;

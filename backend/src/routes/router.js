@@ -11,6 +11,6 @@ const initApiRoutes = ()=>{
     router.use("/use", limitPet(), postInitRoute());
     router.use("/use", limitPet(), putInitRoute());
     router.use("/use", limitPet(), deleteInitRoute());
-    return router;
+    return router
 }
 export default initApiRoutes;

@@ -31,7 +31,6 @@ class Cita{
             const connection = await this.connect();
             const result = await connection.aggregate([
                 { $match: { "cit_codigo": parseInt(id)}}]).toArray();
-                console.log(result);
             return result;
         } catch (error) {
             throw error;
