@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController,obtenerPacientesMedicosController, obtenerCitasPacienteController, obtenerConsultoriosMedicosController, obtenerConsultoriosCitasController, obtenerCitasGenController,
-obtenerCitaByFechaController } from "../controllers/getDataControllers.js";
+obtenerCitaByFechaController,obtenerNumeroCitasByDiaController, obtenerCitasPlazosController } from "../controllers/getDataControllers.js";
 
 const getInitRoute = ()=>{
     const router = Router();
@@ -28,7 +28,9 @@ const getInitRoute = ()=>{
     router.get("/consultoriosMed", obtenerConsultoriosMedicosController)
     router.get("/citaConsultorio", obtenerConsultoriosCitasController);
     router.get("/citasByGenero",obtenerCitasGenController);
-    router.get("/citaByFecha", obtenerCitaByFechaController)
+    router.get("/citaByFecha", obtenerCitaByFechaController);
+    router.get("/numCitasByDay", obtenerNumeroCitasByDiaController);
+    router.get("/citasByPlazos",obtenerCitasPlazosController)
     return router; 
 }
 

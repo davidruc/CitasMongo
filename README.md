@@ -37,7 +37,7 @@
 6. api/use/citasByPaciente?id=<usu_id>
 7. api/use/citaByFecha?date=<YYYY-MM-DD>
 8. api/use/consultoriosMed
-9. 
+9. api/use/numCitasByDay?id=<nro_matriculamedica>&date=<YYYY-MM-DD>
 10. api/use/citaConsultorio
 11. api/use/citasByGenero?gen=<gen_abreviatura>
 12. 

@@ -456,7 +456,38 @@ db.medico.aggregate([
 
 /* Contar el número de citas que un médico tiene en un día específico (por ejemplo, el médico con med_nroMatriculaProsional 1 en '2023-07-12') */
 
-
+use("db_citas");
+db.medico.aggregate([
+    {
+        $match: {
+          "med_nroMatriculaProfesional": 123
+        }
+    },
+    {
+        $lookup: {
+          from: "cita",
+          localField: "med_nroMatriculaProfesional",
+          foreignField: "cit_medico",
+          pipeline: [
+            {
+                $match: {
+                  "cit_fecha": "2023-07-15"
+                }
+            }
+          ],
+          as: "citas"
+        }
+    },
+    {
+        $project: {
+          _id: 0,
+          "matricula_medica": "$med_nroMatriculaProfesional",
+          "nombre_medico": "$med_nombreCompleto",
+          "fecha": {$arrayElemAt: ["$citas.cit_fecha", 0]},
+          "numero_citas": {$size: "$citas"}
+        }
+    }
+]);
 
 /* Obtener los consultorio donde se aplicó las citas de un paciente */
 
@@ -582,11 +613,67 @@ db.cita.aggregate([
 /* Mostrar todas las citas que fueron rechazadas y en un mes específico, mostrar la fecha de la cita, el nombre del usuario y el médico. */
 
 use("db_citas");
-db.cita.find(
+db.cita.aggregate([
+    { $match: {
+        cit_estadoCita : 3
+    }},
     {
-          "cit_fecha.$date":{
-            $gte: "2023-07-11",
-            $lte: "2025-09-15"
+          $match: {
+            "cit_fecha":{
+                $gte: "2023-07-11",
+                $lte: "2023-07-16"
+              }
           }
+    },
+    {
+        $lookup: {
+          from: "medico",
+          localField: "cit_medico",
+          foreignField: "med_nroMatriculaProfesional",
+          pipeline: [
+            {
+                $project: {
+                  _id: 0,
+                  "matricula_medica": "$med_nroMatriculaProfesional",
+                  "nombre_medico": "$med_nombreCompleto",
+                }
+            }
+          ],
+          as: "medico_Asignado"
+        }
+    },
+    {
+        $lookup: {
+          from: "usuario",
+          localField: "cit_datosUsuario",
+          foreignField: "usu_id",
+          pipeline: [
+            {
+                $project: {
+                  _id: 0,
+                  "id_usuario": "$usu_id",
+                  "nombre": "$usu_nombre",
+                  "primer_apellido": "$usu_primer_apellido_usuar",
+                  "segundo_apellido": "$usu_segdo_apellido_usuar",
+                  "telefono_contacto": "$usu_telefono",
+                  "direccion": "$usu_direccion",
+                  "email": "$usu_email",
+                }
+            }
+          ],
+          as: "paciente"
+        }
+    },
+    {$unwind: "$medico_Asignado"},
+    {$unwind: "$paciente"},
+    {
+        $project: {
+          _id: 0,
+          "codigo_cita": "$cit_codigo",
+          "fecha": "$cit_fecha",
+          "estado_cita": "$cit_estadoCita",
+          "medico": "$medico_Asignado",
+          "paciente": "$paciente"
+        }
     }
-)
+])

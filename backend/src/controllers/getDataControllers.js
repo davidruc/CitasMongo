@@ -1,4 +1,4 @@
-import { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName, obtenerPacientesMedicos, obtenerCitasPaciente, obtenerConsultoriosMedicos, obtenerConsultoriosCitas, obtenerCitasGen,obtenerCitaByFecha } from "../services/getServices.js";
+import { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName, obtenerPacientesMedicos, obtenerCitasPaciente, obtenerConsultoriosMedicos, obtenerConsultoriosCitas, obtenerCitasGen,obtenerCitaByFecha, obtenerNumeroCitasByDia, obtenerCitasPlazos } from "../services/getServices.js";
 
 const obtenerAllAcudientesController = async (req, res, next)=>{
     try {
@@ -217,5 +217,23 @@ const obtenerCitaByFechaController = async(req, res, next)=>{
         res.status(500).send(error)
     }
 }
+const obtenerNumeroCitasByDiaController = async(req, res, next)=>{
+    try {
+        const {id, date} = req.query;
+        const medico = await obtenerNumeroCitasByDia(id, date)
+        res.status(200).send(medico);
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+const obtenerCitasPlazosController = async(req,res,next)=>{
+    try {
+        const {month} = req.query;
+        const medico = await obtenerCitasPlazos(month);
+        res.status(200).send(medico)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
 export {obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController, obtenerPacientesMedicosController, obtenerCitasPacienteController,obtenerConsultoriosMedicosController, obtenerConsultoriosCitasController, obtenerCitasGenController,
-obtenerCitaByFechaController}
+obtenerCitaByFechaController, obtenerNumeroCitasByDiaController, obtenerCitasPlazosController}

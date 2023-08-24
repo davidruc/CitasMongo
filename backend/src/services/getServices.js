@@ -110,4 +110,12 @@ const obtenerCitaByFecha = async(date)=>{
     const citas = new Cita();
     return await citas.getCitaByFecha(date);
 }
-export { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName, obtenerPacientesMedicos, obtenerCitasPaciente, obtenerConsultoriosMedicos, obtenerConsultoriosCitas, obtenerCitasGen, obtenerCitaByFecha }
+const obtenerNumeroCitasByDia = async(id, date)=>{
+    const medico = new Medico();
+    return await medico.getNumeroCitasByDia(id, date);
+}
+const obtenerCitasPlazos = async(month)=>{
+    const cita = new Cita();
+    return await cita.getCitasPlazos(month);
+}
+export { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName, obtenerPacientesMedicos, obtenerCitasPaciente, obtenerConsultoriosMedicos, obtenerConsultoriosCitas, obtenerCitasGen, obtenerCitaByFecha, obtenerNumeroCitasByDia, obtenerCitasPlazos }

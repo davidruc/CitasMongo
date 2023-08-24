@@ -171,6 +171,45 @@ class Medico{
             throw error;
         }
     }
+    async getNumeroCitasByDia(id ,date){
+        try {
+            const connection = await this.connect();
+            const result = await connection.aggregate([
+                {
+                    $match: {
+                      "med_nroMatriculaProfesional": parseInt(id)
+                    }
+                },
+                {
+                    $lookup: {
+                      from: "cita",
+                      localField: "med_nroMatriculaProfesional",
+                      foreignField: "cit_medico",
+                      pipeline: [
+                        {
+                            $match: {
+                              "cit_fecha": `${date}`
+                            }
+                        }
+                      ],
+                      as: "citas"
+                    }
+                },
+                {
+                    $project: {
+                      _id: 0,
+                      "matricula_medica": "$med_nroMatriculaProfesional",
+                      "nombre_medico": "$med_nombreCompleto",
+                      "fecha": `${date}`,
+                      "numero_citas": {$size: "$citas"}
+                    }
+                }
+            ]).toArray();
+            return result;
+        } catch (error) {
+            throw error;            
+        }
+    }
 }   
 
 export {Medico}
