@@ -1,5 +1,5 @@
 import { collectionGen } from "../../db/atlas.js";
-
+import siguienteId from "../helpers/AutoIncrementId.js";
 class TipoDoc{    
     _id;
     tipodoc_id;
@@ -37,7 +37,8 @@ class TipoDoc{
     async postTipoDoc(data){
         try {
             const connection = await this.connect();
-            const result = await connection.insertOne(data);
+            const newId = await siguienteId("tipo_documento")
+            const result = await connection.insertOne({tipodoc_id: newId,...data});
             return result;
         } catch (error) {
             throw error;

@@ -38,7 +38,7 @@ class Medico{
     async postMedico(data){
         try {
             const connection = await this.connect();
-            const result = await connection.insertOne(data);
+            const result = await connection.insertOne({data});
             return result;
         } catch (error) {
             throw error;

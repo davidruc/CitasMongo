@@ -1,5 +1,5 @@
 import { collectionGen } from "../../db/atlas.js";
-
+import siguienteId from "../helpers/AutoIncrementId.js";
 class Genero{    
     _id;
     gen_id;
@@ -37,7 +37,8 @@ class Genero{
     async postGenero(data){
         try {
             const connection = await this.connect();
-            const result = await connection.insertOne(data);
+            const newId = await siguienteId("genero")
+            const result = await connection.insertOne({gen_id: newId,...data});
             return result;
         } catch (error) {
             throw error;
