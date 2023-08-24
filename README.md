@@ -33,4 +33,12 @@
 2. api/use/citas
 3. api/use/especialidadName?esp=<especialidad>
 4. api/use/usuario?id=<usu_id>
-5. api/use
+5. api/use/pacientesMedico?id=<nro_matriculamedica>
+6. api/use/citasByPaciente?id=<usu_id>
+7. api/use/citaByFecha?date=<YYYY-MM-DD>
+8. api/use/consultoriosMed
+9. 
+10. api/use/citaConsultorio
+11. api/use/citasByGenero?gen=<gen_abreviatura>
+12. 
+13. 

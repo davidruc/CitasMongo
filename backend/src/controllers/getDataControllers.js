@@ -1,4 +1,4 @@
-import { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName } from "../services/getServices.js";
+import { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName, obtenerPacientesMedicos, obtenerCitasPaciente, obtenerConsultoriosMedicos, obtenerConsultoriosCitas, obtenerCitasGen,obtenerCitaByFecha } from "../services/getServices.js";
 
 const obtenerAllAcudientesController = async (req, res, next)=>{
     try {
@@ -165,4 +165,57 @@ const obtenerEspecialidadByNameController = async(req, res, next)=>{
         res.status(500).send(error);
     }
 };
-export {obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController}
+const obtenerPacientesMedicosController = async(req, res, next)=>{
+    try {
+        const {id} = req.query;
+        const medicos = await obtenerPacientesMedicos(id)
+        res.status(200).send(medicos);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+const obtenerCitasPacienteController = async(req, res, next)=>{
+    try {
+        const {id} = req.query;
+        const usuario = await obtenerCitasPaciente(id);
+        res.status(200).send(usuario);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+const obtenerConsultoriosMedicosController = async(req, res, next)=>{
+    try {
+        const medico = await obtenerConsultoriosMedicos();
+        res.status(200).send(medico)
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+const obtenerConsultoriosCitasController = async(req, res, next)=>{
+    try {
+        const usuario = await obtenerConsultoriosCitas();
+        res.status(200).send(usuario)
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+const obtenerCitasGenController = async(req, res, next)=>{
+    try {
+        const {gen} = req.query;
+        const citas = await obtenerCitasGen(gen);
+        res.status(200).send(citas);
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+const obtenerCitaByFechaController = async(req, res, next)=>{
+    try {
+        const {date}= req.query;
+        const citas = await obtenerCitaByFecha(date);
+        res.status(200).send(citas);
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+export {obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController, obtenerPacientesMedicosController, obtenerCitasPacienteController,obtenerConsultoriosMedicosController, obtenerConsultoriosCitasController, obtenerCitasGenController,
+obtenerCitaByFechaController}

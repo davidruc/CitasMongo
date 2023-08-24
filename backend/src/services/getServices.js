@@ -84,7 +84,30 @@ const obtenerUsuarioById = async (id)=>{
 
 const obtenerEspecialidadByName = async (esp)=>{
     const especialidad = new Especialidad();
-    console.log(esp);
     return await especialidad.getEspecialidadByName(esp)
 }
-export { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName }
+const obtenerPacientesMedicos = async (id)=>{
+    const medico = new Medico(id);
+    return await medico.getPacientesMedicos(id);
+}
+const obtenerCitasPaciente = async (id)=>{
+    const usuario = new Usuario(id);
+    return await usuario.getCitasPaciente(id);
+}
+const obtenerConsultoriosMedicos = async()=>{
+    const medicos = new Medico();
+    return await medicos.getConsultoriosMedicos();
+}
+const obtenerConsultoriosCitas = async()=>{
+    const usuario = new Usuario();
+    return await usuario.getConsultoriosCitas();
+}
+const obtenerCitasGen = async(gen)=>{
+    const citas = new Cita();
+    return await citas.getCitasGen(gen);
+}
+const obtenerCitaByFecha = async(date)=>{
+    const citas = new Cita();
+    return await citas.getCitaByFecha(date);
+}
+export { obtenerAllAcudientes, obtenerAcudientesById, obtenerAllCita, obtenerCitaById, obtenerAllConsultorio, obtenerConsultorioById, obtenerAllEspecialidad, obtenerEspecialidadById, obtenerAllEstadoCita, obtenerEstadoCitaById, obtenerAllGenero, obtenerGeneroById, obtenerAllMedico, obtenerMedicoById, obtenerAllTipoDoc, obtenerTipoDocById, obtenerAllUsuario, obtenerUsuarioById, obtenerEspecialidadByName, obtenerPacientesMedicos, obtenerCitasPaciente, obtenerConsultoriosMedicos, obtenerConsultoriosCitas, obtenerCitasGen, obtenerCitaByFecha }

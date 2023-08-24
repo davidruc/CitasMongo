@@ -73,6 +73,114 @@ class Usuario{
         } catch (error) {
             throw error;
         }
+    };
+    async getCitasPaciente(id){
+        try {
+            const connection = await this.connect();
+            const result = await connection.aggregate([
+                {
+                    $match: {
+                        usu_id: parseInt(id)
+                    }
+                },
+                {
+                    $lookup: {
+                      from: "cita",
+                      localField: "usu_id",
+                      foreignField: "cit_datosUsuario",
+                      pipeline:[{
+                        $project: {
+                          _id: 0,
+                          "codigo_cita": "$cit_codigo",
+                          "fecha": "$cit_fecha",
+                          "id_medico": "$cit_medico",
+                          "estado": "cit_estadoCita" 
+                        }
+                      }],
+                      as: "citaData"
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        id_usuario: "$usu_id",
+                        nombre: "$usu_nombre",
+                        apellido: "$usu_primer_apellido_usuar",
+                        telefono: "$usu_telefono",
+                        consultorías : "$citaData"
+                    }
+                }
+            ]).toArray();
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    };
+    async getConsultoriosCitas(){
+        try {
+            const connection = await this.connect();
+            const result = await connection.aggregate([
+                {
+                    $lookup: {
+                      from: "cita",
+                      localField: "usu_id",
+                      foreignField: "cit_datosUsuario",
+                      pipeline: [
+                        {
+                            $lookup: {
+                              from: "medico",
+                              localField: "cit_medico",
+                              foreignField: "med_nroMatriculaProfesional",
+                              pipeline: [
+                                {
+                                    $lookup: {
+                                      from: "consultorio",
+                                      localField: "med_consultorio",
+                                      foreignField: "cons_codigo",
+                                      as: "consul"
+                                    }
+                                }
+                              ],
+                              as: "medico"
+                            }
+                        },
+                        {
+                            $project: {
+                              _id: 0,
+                              "codigo_cita": "$cit_codigo",
+                              "fecha": "$cit_fecha",
+                              "codigo_medico": "$cit_medico",
+                              "nombre_medico":  { $arrayElemAt: ["$medico.med_nombreCompleto", 0] },
+                              "consultorio": { $arrayElemAt: ["$medico.consul.cons_nombre", 0]}
+                            }
+                        },
+                        {$unwind: "$consultorio"}
+                      ],
+                      as: "citas"
+                    }
+                },
+                {
+                    $match: {
+                      "citas": { $ne: [] }
+                    }
+                },
+                {
+                    $project: {
+                      _id: 0,
+                      "id_usuario": "$usu_id",
+                      "nombre": "$usu_nombre",
+                      "apellido": "$usu_primer_apellido_usuar",
+                      "telefono": "$usu_telefono",
+                      "direccion": "$usu_direccion",
+                      "email": "$usu_email",
+                      "citas_programadas": "$citas"
+                    }
+                }
+            ]).toArray();
+            return result;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

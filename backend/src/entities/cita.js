@@ -67,6 +67,87 @@ class Cita{
         } catch (error) {
             throw error;
         }
+    };
+    async getCitasGen(gen){
+        try {
+            const connection = await this.connect();
+            const result = await connection.aggregate([
+                {
+                    $match: {
+                      "cit_estadoCita": 4
+                    }
+                },
+                {
+                    $lookup: {
+                      from: "usuario",
+                      localField: "cit_datosUsuario",
+                      foreignField: "usu_id",
+                      pipeline: [{
+                        $lookup: {
+                          from: "genero",
+                          localField: "usu_genero",
+                          foreignField: "gen_id",
+                          as: "gender"
+                        }
+                      },
+                      {
+                        $project: {
+                          _id: 0,
+                          "nombre_paciente": "$usu_nombre",
+                          "apellido_paciente": "$usu_primer_apellido_usuar",
+                          "telefono": "$usu_telefono",
+                          "direccion": "$usu_direccion",
+                          "email": "$usu_email",
+                          "genero": { $arrayElemAt: ["$gender.gen_nombre",0]},
+                          "abreviatura": { $arrayElemAt: ["$gender.gen_abreviatura",0]},
+                        
+                        }
+                      }
+                    ],
+                      as: "usu"
+                    }
+                },
+                {
+                    $match: {
+                        "usu.abreviatura": `${gen}`
+                    }
+                },
+                {
+                    $project: {
+                      _id: 0,
+                      "codigo_cita": "$cit_codigo",
+                      "fecha": "$cit_fecha",
+                      "codigo_medico": "$cit_medico",
+                      "paciente": "$usu",
+                    }
+                }
+            ]).toArray();
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+    async getCitaByFecha(date){
+        try {
+            const connection = await this.connect();
+            const result = await connection.aggregate([
+            {
+                $match: {
+                    cit_fecha : `${date}`
+                }
+            },{
+                $project: {
+                _id:0,
+                "codigo_cita":"$cit_codigo",
+                "fecha":"$cit_fecha",
+                "matricula_medico":"$cit_medico"
+                }
+            }
+        ]).toArray();
+        return result;
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController } from "../controllers/getDataControllers.js";
+import { obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController,obtenerPacientesMedicosController, obtenerCitasPacienteController, obtenerConsultoriosMedicosController, obtenerConsultoriosCitasController, obtenerCitasGenController,
+obtenerCitaByFechaController } from "../controllers/getDataControllers.js";
 
 const getInitRoute = ()=>{
     const router = Router();
@@ -22,6 +23,12 @@ const getInitRoute = ()=>{
     router.get("/tipoDocumento", obtenerTipoDocByIdController);
     router.get("/usuario", obtenerUsuarioByIdController);
     router.get("/especialidadName", obtenerEspecialidadByNameController);  
+    router.get("/pacientesMedico", obtenerPacientesMedicosController);
+    router.get("/citasByPaciente", obtenerCitasPacienteController);
+    router.get("/consultoriosMed", obtenerConsultoriosMedicosController)
+    router.get("/citaConsultorio", obtenerConsultoriosCitasController);
+    router.get("/citasByGenero",obtenerCitasGenController);
+    router.get("/citaByFecha", obtenerCitaByFechaController)
     return router; 
 }
 
