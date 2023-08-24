@@ -9,7 +9,8 @@ db.counters.insertMany([
     { count: "estado_citaId", sequence_value: 0 },
     { count: "medicoId", sequence_value: 0 },
     { count: "especialidadId", sequence_value: 0 },
-    { count: "consultorioId", sequence_value: 0 }
+    { count: "consultorioId", sequence_value: 0 },
+    { count: "rolId", sequence_value: 0},
 ]);
 db.createCollection("tipo_documento", {
     capped: true,
@@ -299,6 +300,66 @@ db.createCollection("consultorio",{
                     bsonType: "string"
                 }
             }  
+        }
+    }
+});
+db.createCollection("session", {
+    validator: {
+        $jsonSchema:{
+            bsonType: "object", 
+            additionalProperties: false,
+            required: ["user_name", "rol"],
+            properties:{
+                _id: {
+                    bsonType: "objectId"
+                },
+                user_name: {
+                    bsonType: "string"
+                },
+                rol: { 
+                    bsonType: 'array',
+                    description: "El rol es obligatorio",
+                    items: {
+                        bsonType: "int",
+                    }
+                },
+                permisos: { 
+                    bsonType: 'object',
+                    description: "Ingrese los permisos",
+                    properties: {
+                        "/user": {
+                            bsonType: "array",
+                            items: {
+                                bsonType: "string",
+                                description: "Ingrese la version autorizada",
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+});
+db.createCollection("rol",{
+    validator: {
+        $jsonSchema: {
+          bsonType: 'object',
+          additionalProperties: false,
+          required: ['id', 'nombre',],
+          properties: {
+            _id:{
+                bsonType: 'objectId',
+            },
+            id:{
+                bsonType: "int",
+                description: "La cedula es obligatorio y tiene que se de tipo numerico"
+            },
+            nombre: { 
+                bsonType: 'string',
+                description: '{"status": "402", "message": "El nombre_usuario es obligatorio y solo recibe letras"}' ,
+                pattern: "^[a-zA-Z ]+$"
+            }
+          },
         }
     }
 });
