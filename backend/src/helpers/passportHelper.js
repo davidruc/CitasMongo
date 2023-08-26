@@ -4,8 +4,9 @@ import { validarToken } from "./JWT.js";
 
 passport.use(new BearerStrategy( 
   { passReqToCallback: true },
-  async function(req, token, done) {
+  async function(req, token, done) { 
     const usuario =  await validarToken(req, token)
+    if (usuario.message) return done(null, false) 
     if (!usuario) return done(null, false);
     return done(null, usuario);
   }

@@ -235,5 +235,8 @@ const obtenerCitasPlazosController = async(req,res,next)=>{
         res.status(500).send(error)
     }
 }
-export {obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController, obtenerPacientesMedicosController, obtenerCitasPacienteController,obtenerConsultoriosMedicosController, obtenerConsultoriosCitasController, obtenerCitasGenController,
+const NotAccessAllowed = async(req, res, next)=>{
+    res.status(404).send({message: "Este endPoint no se encuentra disponible en esta versión de la api"})
+}
+export {NotAccessAllowed,obtenerAllAcudientesController, obtenerAllCitaController, obtenerAllConsultorioController, obtenerAllEspecialidadController, obtenerAllEstadoCitaController, obtenerAllGeneroController, obtenerAllMedicoController, obtenerAllTipoDocController, obtenerAllUsuarioController, obtenerAcudientesByIdController, obtenerCitaByIdController, obtenerConsultorioByIdController, obtenerEspecialidadByIdController, obtenerEstadoCitaByIdController, obtenerGeneroByIdController, obtenerMedicoByIdController, obtenerTipoDocByIdController, obtenerUsuarioByIdController, obtenerEspecialidadByNameController, obtenerPacientesMedicosController, obtenerCitasPacienteController,obtenerConsultoriosMedicosController, obtenerConsultoriosCitasController, obtenerCitasGenController,
 obtenerCitaByFechaController, obtenerNumeroCitasByDiaController, obtenerCitasPlazosController}

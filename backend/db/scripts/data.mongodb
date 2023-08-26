@@ -67,7 +67,23 @@ db.consultorio.insertMany([
     { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio D" },
     { "cons_codigo": siguienteId("consultorio"), "cons_nombre": "Consultorio E" }
 ]);
+db.session.insertMany([
+    {  "id": siguienteId("session"), "user_name": "Admin123","clave": "admin", "methods": ["GET", "POST", "DELETE", "PUT"] , rol: [1], permisos:{
+        "/api/use": ["1.0.0", "2.0.0" ,"3.0.0"]
+    }},
+    {  "id": siguienteId("session"), "user_name": "pepito", "clave": "user", "methods": ["GET"] , rol: [2], permisos:{
+        "/api/use": ["3.0.0"]
+    }},
+    {  "id": siguienteId("session"), "user_name": "premium", "clave": "premium" , "methods": ["GET", "POST"], rol: [3], permisos:{
+        "/api/use": ["2.0.0", "3.0.0"]
+    }}
+])
+
+db.session.insertOne(
 
 
-
+    {  "id": siguienteId("session"), "user_name": "premium", "clave": "premium" , rol: [3], permisos:{
+        "/api/use": ["2.0.0", "3.0.0", "GET"]
+    }}
+)
 

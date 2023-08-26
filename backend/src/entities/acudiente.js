@@ -16,6 +16,7 @@ class Acudiente{
             throw error;
         }
     }
+    // 1.1.1
     async getAllacudientes(){
         try {
             const connection = await this.connect();
@@ -25,6 +26,7 @@ class Acudiente{
             throw error;
         }
     }
+    // 2.0.1
     async getAcudientesByID(id){
         try {
             const connection = await this.connect();

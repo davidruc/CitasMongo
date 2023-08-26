@@ -10,6 +10,7 @@ db.counters.insertMany([
     { count: "medicoId", sequence_value: 0 },
     { count: "especialidadId", sequence_value: 0 },
     { count: "consultorioId", sequence_value: 0 },
+    { count: "sessionId", sequence_value: 0},
     { count: "rolId", sequence_value: 0},
 ]);
 db.createCollection("tipo_documento", {
@@ -308,13 +309,25 @@ db.createCollection("session", {
         $jsonSchema:{
             bsonType: "object", 
             additionalProperties: false,
-            required: ["user_name", "rol"],
+            required: ["user_name", "clave", "methods" ,"rol"],
             properties:{
                 _id: {
                     bsonType: "objectId"
                 },
+                id: {
+                    bsonType: "int"
+                },
                 user_name: {
                     bsonType: "string"
+                },
+                clave: {
+                    bsonType: "string"
+                },
+                methods: {
+                    bsonType: "array",
+                    items: {
+                        bsonType: "string",
+                    }
                 },
                 rol: { 
                     bsonType: 'array',
@@ -327,7 +340,7 @@ db.createCollection("session", {
                     bsonType: 'object',
                     description: "Ingrese los permisos",
                     properties: {
-                        "/user": {
+                        "/api": {
                             bsonType: "array",
                             items: {
                                 bsonType: "string",
@@ -356,7 +369,7 @@ db.createCollection("rol",{
             },
             nombre: { 
                 bsonType: 'string',
-                description: '{"status": "402", "message": "El nombre_usuario es obligatorio y solo recibe letras"}' ,
+                description: '{"status": "402", "message": "El nombre_usuario es obligatorio y solo recibe letras"}',
                 pattern: "^[a-zA-Z ]+$"
             }
           },
