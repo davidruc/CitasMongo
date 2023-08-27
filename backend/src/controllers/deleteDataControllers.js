@@ -81,5 +81,7 @@ const deleteUsuarioController = async(req, res, next)=>{
         res.status(500).send(error);
     }
 }
-
-export {deleteAcudienteController, deleteCitaController, deleteConsultorioController, deleteEspecialidadController, deleteEstadoCitaController, deleteGeneroController, deleteMedicoController, deleteTipoDocController, deleteUsuarioController};
+const NotAccessAllowed = async(req, res, next)=>{
+    res.status(404).send({message: "Este endPoint no se encuentra disponible en esta versión de la api"})
+}
+export {deleteAcudienteController,NotAccessAllowed,deleteCitaController, deleteConsultorioController, deleteEspecialidadController, deleteEstadoCitaController, deleteGeneroController, deleteMedicoController, deleteTipoDocController, deleteUsuarioController};

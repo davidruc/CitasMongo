@@ -90,5 +90,7 @@ const updateUsuarioController = async(req, res, next)=>{
         res.status(500).send(error);
     }
 }
-
-export {updateAcudienteController, updateCitaController, updateConsultorioController, updateEspecialidadController, updateEstadoCitaController, updateGeneroController, updateMedicoController, updateTipoDocController, updateUsuarioController};
+const NotAccessAllowed = async(req, res, next)=>{
+    res.status(404).send({message: "Este endPoint no se encuentra disponible en esta versión de la api"})
+}
+export {updateAcudienteController, NotAccessAllowed, updateCitaController, updateConsultorioController, updateEspecialidadController, updateEstadoCitaController, updateGeneroController, updateMedicoController, updateTipoDocController, updateUsuarioController};

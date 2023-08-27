@@ -108,6 +108,9 @@ const postAndVerifyAcudienteController = async(req, res, next)=>{
        
     } catch (error) {
         res.status(500).send(error);
-    }
+    };
 }
-export {postAcudienteController, postCitaController, postConsultorioController, postEspecialidadController, postEstadoCitaController, postGeneroController, postMedicoController, postTipoDocController, postUsuarioController, postAndVerifyAcudienteController};
+const NotAccessAllowed = async(req, res, next)=>{
+    res.status(404).send({message: "Este endPoint no se encuentra disponible en esta versión de la api"})
+}
+export {postAcudienteController, NotAccessAllowed, postCitaController, postConsultorioController, postEspecialidadController, postEstadoCitaController, postGeneroController, postMedicoController, postTipoDocController, postUsuarioController, postAndVerifyAcudienteController};
