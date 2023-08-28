@@ -89,5 +89,4 @@ const getInitRoute = ()=>{
     router.get("/citasByPlazos",version({ "3.0.0": controller.obtenerCitasPlazosController}))
     return router; 
 }
-/* esto está mal, esto debo hacerlo en mi router, debo tener varios getInitRoute para cada versión del proyecto, así puedo sementarlo por métodos y no queda tan feo  */
 export default getInitRoute

@@ -1,5 +1,5 @@
 {
-    "name": "mongose",
+    "name": "citas",
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
@@ -9,8 +9,8 @@
         "dev": "nodemon --quiet app.js"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "DavidRuc//CampusLands",
+    "license": "LTS",
     "devDependencies": {
         "class-transformer": "0.5.1",
         "class-validator": "0.14.0",

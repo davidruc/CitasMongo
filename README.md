@@ -124,24 +124,24 @@ Ahora para el uso de los endPoints del proyecto hay que tener en cuenta lo sigui
 * **ADMIN**: Métodos permitidos [ GET, POST, PUT, DELETE ], versiones disponibles (1.0.0, 2.0.0, 3.0.0). Acceso completo al CRUD y todos los endPoints de proyecto.
 * **USUARIO**: Métodos permitidos [ GET ], versiones disponibles (3.0.0). Acceso únicamente a los endPoints tipo GET de las consultas específicas del proyecto.
 * **PREMIUM**: Métodos permitidos [ GET, POST ], versiones disponibles (2.0.0, 3.0.0). Acceso al métodos GET del CRUD, a todos los endPoints de las consultas específicas del proyecto.
- 
+
 ### CRUD del Proyecto
 
 
-### Solucion a los requerimientos
-1. api/use/usuarios
-2. api/use/citas
-3. api/use/especialidadName?esp=<especialidad>
-4. api/use/usuario?id=<usu_id>
-5. api/use/pacientesMedico?id=<nro_matriculamedica>
-6. api/use/citasByPaciente?id=<usu_id>
-7. api/use/citaByFecha?date=<YYYY-MM-DD>
-8. api/use/consultoriosMed
-9. api/use/numCitasByDay?id=<nro_matriculamedica>&date=<YYYY-MM-DD>
-10. api/use/citaConsultorio
-11. api/use/citasByGenero?gen=<gen_abreviatura>
-12. 
-13. 
+### Solucion a los requerimientos 
+1. GET api/use/usuarios
+2. GET api/use/citas
+3. GET api/use/especialidadName?esp=<especialidad>
+4. GET api/use/usuario?id=<usu_id>
+5. GET api/use/pacientesMedico?id=<nro_matriculamedica>
+6. GET api/use/citasByPaciente?id=<usu_id>
+7. GET api/use/citaByFecha?date=<YYYY-MM-DD>
+8. GET api/use/consultoriosMed
+9. GET api/use/numCitasByDay?id=<nro_matriculamedica>&date=<YYYY-MM-DD>
+10. GET api/use/citaConsultorio
+11. GET api/use/citasByGenero?gen=<gen_abreviatura>
+12. POST api/use/ingresoUsu
+13. GET api/use/citasByPlazos?month=<MM>
 
 
 
