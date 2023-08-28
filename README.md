@@ -147,6 +147,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "direccion": "Lebrija Santander"
 }
 ```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/acudientes
+```
 * Colección cita
 
 Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
@@ -166,6 +172,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "usuario_cita": 1
 }
 ```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/citas
+```
 * Colección consultorio
 
 Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
@@ -181,6 +193,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
 {
     "nombre_consultorio": "Consultorio A"
 }
+```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/consultorios
 ```
 * Colección especialidad
 
@@ -198,6 +216,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "especialidad": "Cardiología"
 }
 ```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/especialidades
+```
 * Colección estado cita
 
 Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
@@ -213,6 +237,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
 {
     "estado_cita": "Pendiente"
 }
+```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/estadoCitas
 ```
 * Colección genero
 
@@ -230,6 +260,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "genero_mombre": "Masculino", 
     "abreviatura": "M"
 }
+```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/generos
 ```
 * Colección medico
 
@@ -250,6 +286,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "especialidad": 1
 }
 ```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/medicos
+```
 * Colección tipo documento
 
 Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
@@ -266,6 +308,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "tipo_documento": "Cedula de Ciudadania", 
     "abreviatura": "Cc"
 }
+```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/tipoDocumentos
 ```
 * Colección usuario
 
@@ -291,6 +339,12 @@ El cuerpo del método post o delete de este endPoint es validado y verificado po
     "genero": 1, 
     "acudiente": 1
 }
+```
+
+Para el GET all data, el endPoint es el siguiente:
+
+```http
+    GET /api/use/usuarios
 ```
 
 
