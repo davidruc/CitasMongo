@@ -128,6 +128,172 @@ Ahora para el uso de los endPoints del proyecto hay que tener en cuenta lo sigui
 ### CRUD del Proyecto
 
 
+
+* Colección acudiente
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/acudiente
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "nombre_acudiente": "Edgar Eduardo Mantilla Garcia", 
+    "telefono": 3167965248, 
+    "direccion": "Lebrija Santander"
+}
+```
+* Colección cita
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/cita
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "fecha_cita": "2023-07-13", 
+    "estado_cita": 1, 
+    "medico_asignado": 123, 
+    "usuario_cita": 1
+}
+```
+* Colección consultorio
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/consultorio
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "nombre_consultorio": "Consultorio A"
+}
+```
+* Colección especialidad
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/especialidad
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "especialidad": "Cardiología"
+}
+```
+* Colección estado cita
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/estadoCita
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "estado_cita": "Pendiente"
+}
+```
+* Colección genero
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/genero
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "genero_mombre": "Masculino", 
+    "abreviatura": "M"
+}
+```
+* Colección medico
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/medico
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "matricula_profesional": 123, 
+    "nombre_medico": "Dr. Juan Pérez", 
+    "consultorio": 1, 
+    "especialidad": 1
+}
+```
+* Colección tipo documento
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/tipoDocumento
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "tipo_documento": "Cedula de Ciudadania", 
+    "abreviatura": "Cc"
+}
+```
+* Colección usuario
+
+Para todos los métodos GET by Id, PUT, POST, DELETE se usa el siguiente endPoint
+
+```http
+     /api/use/usuario
+```
+Para el método get by id, put y delete se debe enviar un parámetro en los headers de la siguiente manera ?id="valor", donde el "valor" es el id respectivo que queremos modificar. 
+
+El cuerpo del método post o delete de este endPoint es validado y verificado por un DTO, y los valores y esquemas deben ser enviados como se evidencia en los siguientes ejemplos: 
+
+```JSON
+{
+    "nombre_usuario": "Andres", 
+    "segundo_nombre_usuario": "Santiago", 
+    "apellido_usuario": "Carvajal", 
+    "segundo_apellido_usuario": "Peliño", 
+    "telefono": "3154784596", 
+    "direccion": "Bucaramanga", 
+    "email": "santiagoyo@gmail.com", 
+    "tipo_documento": 1, 
+    "genero": 1, 
+    "acudiente": 1
+}
+```
+
+
 ### Solucion a los requerimientos 
 1. GET api/use/usuarios
 2. GET api/use/citas
